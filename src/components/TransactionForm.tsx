@@ -1,4 +1,3 @@
-
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -33,6 +32,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { useTransactions } from "@/context/TransactionContext";
 import { toast } from "@/hooks/use-toast";
+import { TransactionType } from "@/types/Transaction";
 
 /**
  * Schema de validação para o formulário de transação
@@ -83,18 +83,23 @@ const TransactionForm = () => {
   });
 
   // Determina quais categorias mostrar com base no tipo selecionado
-  const selectedType = form.watch("type");
+  const selectedType = form.watch("type") as TransactionType;
   const categories = selectedType === "income" ? incomeCategories : expenseCategories;
 
   /**
    * Manipula o envio do formulário
    */
   function onSubmit(values: z.infer<typeof transactionSchema>) {
-    // Formata a data para string antes de salvar
-    addTransaction({
-      ...values,
+    const transaction = {
+      description: values.description,
+      amount: values.amount,
       date: format(values.date, "yyyy-MM-dd"),
-    });
+      type: values.type,
+      category: values.category,
+    };
+    
+    // Adiciona a transação
+    addTransaction(transaction);
     
     // Notifica o usuário
     toast({

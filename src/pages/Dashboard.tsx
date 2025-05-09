@@ -1,18 +1,11 @@
 
 import { useEffect } from "react";
-import { Chart as ChartJS, ArcElement, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 import { useTransactions } from "@/context/TransactionContext";
-import { Chart, ChartCard } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import DashboardCard from "@/components/DashboardCard";
 import TransactionForm from "@/components/TransactionForm";
 import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Pie, PieChart, Cell } from "recharts";
-import { Calculator, ChartBarIcon, ChartPie, DollarSign } from "lucide-react";
-
-/**
- * Configuração do Chart.js
- */
-ChartJS.register(ArcElement, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+import { Calculator, ChartPie, DollarSign } from "lucide-react";
 
 /**
  * Página do Dashboard
@@ -120,7 +113,6 @@ const Dashboard = () => {
                       height={70}
                     />
                     <YAxis />
-                    <Tooltip formatter={(value) => formatCurrency(Number(value))} />
                     <Bar dataKey="value">
                       {getCategoryData().map((entry, index) => (
                         <Cell 
@@ -159,7 +151,6 @@ const Dashboard = () => {
                       <Cell key="cell-0" fill={INCOME_COLOR} />
                       <Cell key="cell-1" fill={EXPENSE_COLOR} />
                     </Pie>
-                    <Tooltip formatter={(value) => formatCurrency(Number(value))} />
                   </PieChart>
                 </ResponsiveContainer>
               </div>
