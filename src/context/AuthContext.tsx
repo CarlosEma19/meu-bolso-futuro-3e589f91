@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
    */
   const login = (password: string): boolean => {
     // Senha fixa definida
-    const correctPassword = "o cadu é o melhor";
+    const correctPassword = "1234554321";
     
     if (password === correctPassword) {
       setIsAuthenticated(true);
