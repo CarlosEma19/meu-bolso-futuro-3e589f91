@@ -86,7 +86,7 @@ const TransactionList = () => {
               <SelectValue placeholder="Filtrar por tipo" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Todos</SelectItem>
+              <SelectItem value="all">Todos</SelectItem>
               <SelectItem value="income">Receitas</SelectItem>
               <SelectItem value="expense">Despesas</SelectItem>
             </SelectContent>
@@ -103,7 +103,7 @@ const TransactionList = () => {
               <SelectValue placeholder="Filtrar por categoria" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Todas categorias</SelectItem>
+              <SelectItem value="all">Todas categorias</SelectItem>
               {uniqueCategories.map(category => (
                 <SelectItem key={category} value={category}>
                   {category}
